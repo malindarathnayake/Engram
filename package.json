@@ -1,0 +1,52 @@
+{
+  "name": "@malindarathnayake/engram",
+  "version": "0.3.0",
+  "description": "Graph-based memory MCP server for OpenClaw bots using Apache AGE on PostgreSQL",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "engram": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && cp src/system-prompt.md dist/system-prompt.md",
+    "build:bridge": "cd plugins/engram-bridge && npm install && npm run build",
+    "build:all": "npm run build && npm run build:bridge",
+    "pack:all": "npm run build:all && mkdir -p artifacts && npm pack --pack-destination artifacts/ && cd plugins/engram-bridge && npm pack --pack-destination ../../artifacts/ && npm run pack:zip",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit/",
+    "test:integration": "vitest run tests/db/ tests/graph/ tests/schema/ tests/integration/"
+  },
+  "keywords": [
+    "mcp",
+    "memory",
+    "graph",
+    "apache-age",
+    "openclaw"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "pg": "^8.13.1",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@types/pg": "^8.11.11",
+    "@types/uuid": "^10.0.0",
+    "testcontainers": "^10.16.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.9"
+  },
+  "files": [
+    "dist",
+    "presets"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

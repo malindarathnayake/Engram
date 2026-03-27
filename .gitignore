@@ -1,0 +1,13 @@
+node_modules/
+dist/
+artifacts/
+.package-test/
+pentest/output/*.json
+pentest/output/*.md
+!pentest/output/report.md
+!pentest/output/results.json
+*.tgz
+.DS_Store
+.claude/
+Docs/
+Manualsetup.md
