@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/malindarathnayake/engram/actions/workflows/build.yml"><img src="https://github.com/malindarathnayake/engram/actions/workflows/build.yml/badge.svg" alt="Build & Publish" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License: MIT" /></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen.svg" alt="Node.js" /></a>
   <a href="#security-testing"><img src="https://img.shields.io/badge/security%20tests-26%2F26%20passed-brightgreen.svg" alt="Security: 26/26" /></a>
 </p>
@@ -395,4 +395,4 @@ pentest/                  # Security test harness
 
 ## License
 
-MIT
+Apache 2.0

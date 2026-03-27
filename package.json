@@ -24,7 +24,7 @@
     "apache-age",
     "openclaw"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
     "pg": "^8.13.1",
