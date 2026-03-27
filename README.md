@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/malindarathnayake/engram/actions/workflows/build.yml"><img src="https://github.com/malindarathnayake/engram/actions/workflows/build.yml/badge.svg" alt="Build & Publish" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License: Apache 2.0" /></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen.svg" alt="Node.js" /></a>
   <a href="#security-testing"><img src="https://img.shields.io/badge/security%20tests-26%2F26%20passed-brightgreen.svg" alt="Security: 26/26" /></a>
 </p>
@@ -35,20 +35,51 @@ It exposes 14 MCP tools that any MCP-compatible agent can use. It was designed f
 
 ---
 
+## How It Compares
+
+Most AI memory solutions are vector stores with graph bolted on as an afterthought, or flat key-value dumps with no structure. Engram is different:
+
+| | Engram | Mem0 | Zep | Letta/MemGPT |
+|---|---|---|---|---|
+| **Primary storage** | Typed knowledge graph (Apache AGE) | Vector store | Vector + graph hybrid | Tiered memory |
+| **Relationship traversal** | Native multi-hop Cypher queries | N/A | Secondary to embeddings | N/A |
+| **Fact versioning** | `SUPERSEDED_BY` chains with full audit trail | Overwrite | N/A | Agent-managed |
+| **Integration** | MCP server + native OpenClaw plugin | SDK/API | SDK/API | SDK/API |
+| **Schema enforcement** | Guardrails with type validation | None | None | None |
+| **Deployment** | Self-hosted (PostgreSQL) | SaaS or self-hosted | SaaS-first | Self-hosted |
+| **Query safety** | Parameterized Cypher, 26 security tests | N/A | N/A | N/A |
+
+**Engram's edge:** graph-native traversal + fact versioning + MCP-native + native OpenClaw plugin + self-hosted with schema guardrails. No other solution combines all five.
+
+---
+
 ## Architecture
 
-```
-┌──────────────┐     stdio/MCP      ┌──────────┐     SQL/Cypher     ┌─────────────────────┐
-│  AI Agent    │ ◄──────────────────► │  Engram  │ ◄────────────────► │  PostgreSQL 16      │
-│  (OpenClaw,  │    14 MCP tools     │  Server  │   parameterized   │  + Apache AGE 1.5.0 │
-│   Claude,    │                     │          │   queries only    │  + pgvector 0.7.4   │
-│   any MCP)   │                     └──────────┘                   └─────────────────────┘
-└──────────────┘
+```mermaid
+graph LR
+    A["AI Agent<br/>(OpenClaw, Claude, any MCP)"] <-->|"stdio/MCP<br/>14 MCP tools"| B["Engram<br/>Server"]
+    B <-->|"SQL/Cypher<br/>parameterized queries only"| C["PostgreSQL 16<br/>+ Apache AGE 1.5.0<br/>+ pgvector 0.7.4"]
 ```
 
 **Stack:** TypeScript (ESM) · `@modelcontextprotocol/sdk` · `pg` · Zod
 **Database:** PostgreSQL 16 with Apache AGE (graph) + pgvector (embeddings)
 **Transport:** stdio (MCP standard)
+
+### OpenClaw Integration Paths
+
+```mermaid
+graph TD
+    OC["OpenClaw Bot"] -->|"Option A: Direct MCP"| MCP["MCP Registration<br/>(openclaw.json)"]
+    OC -->|"Option B: Native Plugin"| BP["engram-bridge<br/>(Plugin SDK)"]
+    MCP --> E["Engram Server"]
+    BP --> E
+    E --> DB["PostgreSQL + AGE"]
+
+    style BP fill:#2d6,stroke:#1a4,color:#fff
+    style MCP fill:#26d,stroke:#14a,color:#fff
+```
+
+The **engram-bridge** is a native OpenClaw plugin built on the plugin SDK — not a passthrough. It registers all 14 tools directly in OpenClaw's tool palette, manages the Engram subprocess lifecycle (lazy spawn, auto-restart), whitelists environment variables, and injects memory curation instructions via `before_prompt_build` hook.
 
 ---
 
@@ -395,4 +426,4 @@ pentest/                  # Security test harness
 
 ## License
 
-MIT
+Apache 2.0
