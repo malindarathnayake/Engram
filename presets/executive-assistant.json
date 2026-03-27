@@ -1,0 +1,72 @@
+{
+  "name": "executive-assistant",
+  "description": "Preset for executive assistant bots that track people, organizations, meetings, and decisions.",
+  "entity_types": [
+    {
+      "name": "Person",
+      "properties": ["name", "role", "email", "company"],
+      "extraction_hint": "People mentioned by name with a role or responsibility",
+      "examples": ["Sarah is the CTO of Acme", "Bob joined as VP of Engineering", "Alice handles partnerships"]
+    },
+    {
+      "name": "Company",
+      "properties": ["name", "industry", "relationship"],
+      "extraction_hint": "Companies, organizations, or institutions",
+      "examples": ["Acme Corp is our client", "TechCo is a vendor", "StartupX is in our portfolio"]
+    },
+    {
+      "name": "Team",
+      "properties": ["name", "focus", "lead"],
+      "extraction_hint": "Named teams or working groups",
+      "examples": ["The leadership team meets weekly", "Sales team exceeded quota", "Board of directors approved budget"]
+    },
+    {
+      "name": "Project",
+      "properties": ["name", "status", "deadline", "priority"],
+      "extraction_hint": "Named projects or initiatives",
+      "examples": ["Project Horizon launches in Q3", "The rebrand is on track", "Expansion into APAC is delayed"]
+    },
+    {
+      "name": "Decision",
+      "properties": ["name", "rationale", "decided_by", "date"],
+      "extraction_hint": "Explicit decisions with rationale",
+      "examples": ["Board approved the acquisition", "CEO decided to postpone the launch", "Team chose vendor A over B"]
+    },
+    {
+      "name": "Meeting",
+      "properties": ["name", "date", "attendees", "outcome"],
+      "extraction_hint": "Scheduled meetings with outcomes",
+      "examples": ["Board meeting discussed Q2 results", "1:1 with CEO covered strategy", "All-hands announced restructuring"]
+    },
+    {
+      "name": "Topic",
+      "properties": ["name", "context"],
+      "extraction_hint": "Abstract topics or themes",
+      "examples": ["Budget planning is the priority this week", "Hiring freeze is ongoing", "Investor relations need attention"]
+    },
+    {
+      "name": "Action",
+      "properties": ["name", "assignee", "deadline", "status"],
+      "extraction_hint": "Action items or tasks assigned to people",
+      "examples": ["Sarah needs to review the proposal by Friday", "Follow up with legal on the contract", "Send the report to the board"]
+    },
+    {
+      "name": "Fact",
+      "properties": ["name", "content", "source", "confidence", "timestamp"],
+      "extraction_hint": "Versioned knowledge claims that may be superseded over time",
+      "examples": ["Company revenue hit $10M ARR", "Headcount is 150 as of March", "Series B closed at $50M"]
+    }
+  ],
+  "relationship_types": [
+    "WORKS_AT",
+    "REPORTS_TO",
+    "COLLABORATES_WITH",
+    "DECIDED",
+    "ADVOCATED_FOR",
+    "ATTENDED",
+    "RELATES_TO",
+    "ASSIGNED_TO",
+    "BLOCKED_BY",
+    "SUPERSEDED_BY"
+  ]
+}

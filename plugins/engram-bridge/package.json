@@ -1,0 +1,33 @@
+{
+  "name": "@malindarathnayake/engram-bridge",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "OpenClaw plugin that exposes Engram graph memory tools as native agent tools",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "engram-bridge": "./dist/install.js"
+  },
+  "files": [
+    "dist/",
+    "openclaw.plugin.json"
+  ],
+  "openclaw": {
+    "extensions": ["./dist/index.js"]
+  },
+  "scripts": {
+    "build": "tsc",
+    "pack:artifact": "npm run build && npm pack --pack-destination artifacts/",
+    "pack:zip": "node dist/pack-zip.js"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.48"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "@types/node": "^22.13.14"
+  }
+}

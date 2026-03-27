@@ -1,0 +1,72 @@
+{
+  "name": "coding-agent",
+  "description": "Preset for coding agent bots that track code, architecture, bugs, and technical decisions.",
+  "entity_types": [
+    {
+      "name": "Person",
+      "properties": ["name", "role", "github", "expertise"],
+      "extraction_hint": "Developers, reviewers, or stakeholders mentioned by name",
+      "examples": ["Alice owns the auth module", "Bob is the Go expert", "Carol reviews all PRs"]
+    },
+    {
+      "name": "Repository",
+      "properties": ["name", "language", "owner", "status"],
+      "extraction_hint": "Code repositories or services",
+      "examples": ["api-gateway is in Go", "frontend-app uses React", "engram is a TypeScript MCP server"]
+    },
+    {
+      "name": "File",
+      "properties": ["name", "path", "language", "purpose"],
+      "extraction_hint": "Specific source files or configuration files",
+      "examples": ["connection.ts handles DB pooling", "Dockerfile builds the AGE image", "config.yaml has the deploy settings"]
+    },
+    {
+      "name": "Function",
+      "properties": ["name", "file", "signature", "purpose"],
+      "extraction_hint": "Named functions, methods, or API endpoints",
+      "examples": ["createPool() sets up the DB connection", "handleAuth middleware validates tokens", "/api/users endpoint returns user list"]
+    },
+    {
+      "name": "Bug",
+      "properties": ["name", "severity", "status", "root_cause"],
+      "extraction_hint": "Known bugs, issues, or defects",
+      "examples": ["Memory leak in worker threads", "Race condition in connection pool", "Timeout on large query results"]
+    },
+    {
+      "name": "Decision",
+      "properties": ["name", "rationale", "alternatives", "date"],
+      "extraction_hint": "Technical decisions with rationale",
+      "examples": ["Chose AGE over Neo4j for graph storage", "Switched from REST to gRPC", "Adopted vitest for testing"]
+    },
+    {
+      "name": "Pattern",
+      "properties": ["name", "context", "applicability"],
+      "extraction_hint": "Design patterns, anti-patterns, or conventions",
+      "examples": ["Repository pattern for data access", "Circuit breaker for external APIs", "Builder pattern for query construction"]
+    },
+    {
+      "name": "Dependency",
+      "properties": ["name", "version", "purpose", "status"],
+      "extraction_hint": "External libraries, frameworks, or services",
+      "examples": ["pg v8.13 for PostgreSQL", "zod for validation", "testcontainers for integration tests"]
+    },
+    {
+      "name": "Fact",
+      "properties": ["name", "content", "source", "confidence", "timestamp"],
+      "extraction_hint": "Versioned knowledge claims that may be superseded over time",
+      "examples": ["API supports 10k RPS as of March", "Test coverage is 85%", "Deploy takes 3 minutes on average"]
+    }
+  ],
+  "relationship_types": [
+    "OWNS",
+    "CONTRIBUTES_TO",
+    "DEPENDS_ON",
+    "CAUSED_BY",
+    "SIMILAR_TO",
+    "DECIDED",
+    "CALLS",
+    "IMPORTS",
+    "FIXES",
+    "SUPERSEDED_BY"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "name": "dev-team",
+  "description": "Hybrid preset for software development teams where executives are also developers. Combines the most useful types from both specialized presets.",
+  "entity_types": [
+    {
+      "name": "Person",
+      "properties": ["name", "role", "email", "team"],
+      "extraction_hint": "People mentioned by name with a role or responsibility",
+      "examples": ["Sarah is the CTO", "Bob joined the backend team", "Alice reviewed the PR"]
+    },
+    {
+      "name": "Company",
+      "properties": ["name", "industry", "relationship"],
+      "extraction_hint": "Companies, organizations, or institutions",
+      "examples": ["Acme Corp is our client", "We partnered with TechCo", "Google Cloud is our provider"]
+    },
+    {
+      "name": "Team",
+      "properties": ["name", "focus", "lead"],
+      "extraction_hint": "Named teams or working groups",
+      "examples": ["The platform team owns infrastructure", "Frontend squad is shipping v2", "DevOps group manages deploys"]
+    },
+    {
+      "name": "Project",
+      "properties": ["name", "status", "deadline", "priority"],
+      "extraction_hint": "Named projects, initiatives, or workstreams",
+      "examples": ["Project Atlas launches Q2", "The migration is blocked", "Auth rewrite is high priority"]
+    },
+    {
+      "name": "Decision",
+      "properties": ["name", "rationale", "decided_by", "date"],
+      "extraction_hint": "Explicit decisions with rationale or consequences",
+      "examples": ["We decided to use PostgreSQL for persistence", "The team chose React over Vue", "Management approved the budget"]
+    },
+    {
+      "name": "Meeting",
+      "properties": ["name", "date", "attendees", "outcome"],
+      "extraction_hint": "Scheduled meetings with outcomes or action items",
+      "examples": ["Sprint planning discussed the roadmap", "1:1 with Sarah covered promotions", "Architecture review approved the RFC"]
+    },
+    {
+      "name": "Repository",
+      "properties": ["name", "language", "owner", "status"],
+      "extraction_hint": "Code repositories, services, or codebases",
+      "examples": ["The api-gateway repo needs updating", "engram is a TypeScript project", "frontend-app is in maintenance mode"]
+    },
+    {
+      "name": "Bug",
+      "properties": ["name", "severity", "status", "assignee"],
+      "extraction_hint": "Known bugs, issues, or defects",
+      "examples": ["The login timeout bug is P1", "Memory leak in the worker process", "Flaky test in CI pipeline"]
+    },
+    {
+      "name": "Pattern",
+      "properties": ["name", "context", "applicability"],
+      "extraction_hint": "Recurring patterns, anti-patterns, or best practices",
+      "examples": ["Circuit breaker pattern for external calls", "We avoid singleton for testability", "Event sourcing for audit trail"]
+    },
+    {
+      "name": "Topic",
+      "properties": ["name", "context"],
+      "extraction_hint": "Abstract topics, themes, or areas of discussion",
+      "examples": ["Security is a recurring concern", "Performance optimization is ongoing", "We need to discuss technical debt"]
+    },
+    {
+      "name": "Fact",
+      "properties": ["name", "content", "source", "confidence", "timestamp"],
+      "extraction_hint": "Versioned knowledge claims that may be superseded over time",
+      "examples": ["Sarah is the CTO as of March 2026", "The API supports 10k RPS", "Budget was approved at $500k"]
+    }
+  ],
+  "relationship_types": [
+    "WORKS_AT",
+    "REPORTS_TO",
+    "COLLABORATES_WITH",
+    "DECIDED",
+    "ADVOCATED_FOR",
+    "ATTENDED",
+    "OWNS",
+    "CONTRIBUTES_TO",
+    "DEPENDS_ON",
+    "CAUSED_BY",
+    "RELATES_TO",
+    "FIXES",
+    "SUPERSEDED_BY"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "engram-bridge",
+  "name": "Engram Graph Memory",
+  "description": "Graph-based memory for OpenClaw bots using Apache AGE on PostgreSQL. Provides 14 tools for entity/relationship CRUD, fact versioning, traversal, and search.",
+  "version": "0.2.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "command": {
+        "type": "string",
+        "default": "engram",
+        "description": "Path to the engram binary"
+      },
+      "maxRestarts": {
+        "type": "number",
+        "default": 3,
+        "description": "Max subprocess restart attempts before degraded mode"
+      }
+    }
+  },
+  "uiHints": {
+    "command": {
+      "label": "Engram Binary Path",
+      "placeholder": "engram"
+    }
+  }
+}
